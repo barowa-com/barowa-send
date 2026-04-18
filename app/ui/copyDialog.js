@@ -21,13 +21,13 @@ module.exports = function(name, url) {
           <input
             type="text"
             id="share-url"
-            class="block w-full my-4 border-default rounded-lg leading-loose h-12 px-2 py-1 dark:bg-grey-80"
+            class="block w-full min-w-0 my-4 border-default rounded-lg leading-loose h-12 px-2 py-1 dark:bg-grey-80"
             value="${url}"
             readonly="true"
           />
           <button
             id="qr-btn"
-            class="w-16 m-1 p-1"
+            class="w-40 flex-shrink-0 m-1 p-1"
             onclick="${toggleQR}"
             title="QR code"
           >
@@ -57,10 +57,10 @@ module.exports = function(name, url) {
       const qrBtn = document.getElementById('qr-btn');
       if (shareUrl.classList.contains('hidden')) {
         shareUrl.classList.replace('hidden', 'block');
-        qrBtn.classList.replace('w-48', 'w-16');
+        qrBtn.classList.replace('w-72', 'w-40');
       } else {
         shareUrl.classList.replace('block', 'hidden');
-        qrBtn.classList.replace('w-16', 'w-48');
+        qrBtn.classList.replace('w-40', 'w-72');
       }
     }
 
