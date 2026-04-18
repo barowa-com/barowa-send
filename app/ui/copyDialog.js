@@ -27,7 +27,7 @@ module.exports = function(name, url) {
           />
           <button
             id="qr-btn"
-            class="flex h-40 w-40 flex-shrink-0 items-center justify-center p-1 m-1"
+            class="flex h-64 w-64 flex-shrink-0 items-center justify-center p-1 m-1"
             onclick="${toggleQR}"
             title="QR code"
           >
@@ -57,12 +57,12 @@ module.exports = function(name, url) {
       const qrBtn = document.getElementById('qr-btn');
       if (shareUrl.classList.contains('hidden')) {
         shareUrl.classList.replace('hidden', 'block');
-        qrBtn.classList.remove('h-72', 'w-72');
-        qrBtn.classList.add('h-40', 'w-40');
+        qrBtn.classList.remove('h-64', 'w-64');
+        qrBtn.classList.add('h-48', 'w-48');
       } else {
         shareUrl.classList.replace('block', 'hidden');
-        qrBtn.classList.remove('h-40', 'w-40');
-        qrBtn.classList.add('h-72', 'w-72');
+        qrBtn.classList.remove('h-48', 'w-48');
+        qrBtn.classList.add('h-64', 'w-64');
       }
     }
 

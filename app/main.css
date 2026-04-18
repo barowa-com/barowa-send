@@ -410,3 +410,15 @@ select {
 }
 
 /* end signin button color experiment */
+
+/* Copy-dialog QR: klassisch (weißer Hintergrund, schwarze Module) im Light-Mode;
+   im Dark-Mode wie Modal (grey-90) mit hellen Modulen — gleiche Logik wie `dark:` (prefers-color-scheme) */
+@media (prefers-color-scheme: dark) {
+  #qr-btn svg > rect[fill='white'] {
+    fill: #0c0c0d;
+  }
+
+  #qr-btn svg path {
+    fill: #fff;
+  }
+}
