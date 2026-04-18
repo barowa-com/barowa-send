@@ -17,6 +17,11 @@ module.exports = function(app, devServer) {
   wsapp.listen(8081, config.listen_address);
 
   assets.setMiddleware(devServer.middleware);
+  // Warten bis der erste Webpack-Lauf fertig ist, sonst fehlt manifest.json im Memory-FS
+  // und die HTML-Seite wird ohne gültige app.css/app.js-URLs ausgeliefert.
+  app.use((req, res, next) => {
+    devServer.middleware.waitUntilValid(() => next());
+  });
   app.use(morgan('dev', { stream: process.stderr }));
   function android(req, res) {
     const index = devServer.middleware.fileSystem
