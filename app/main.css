@@ -301,16 +301,18 @@ select {
     @apply bg-primary_accent;
   }
 
+  /* Primärfarbe kann z. B. #000 sein (Branding); auf dunklem Grund wäre
+     text-primary dann unsichtbar. Helle Linkfarbe wie übriger Dark-Mode-Text. */
   .link-primary {
-    @apply text-primary;
+    @apply text-grey-30;
   }
 
   .link-primary:hover {
-    @apply text-primary_accent;
+    @apply text-grey-10;
   }
 
   .link-primary:focus {
-    @apply text-primary_accent;
+    @apply text-grey-10;
   }
 
   .main > section {
