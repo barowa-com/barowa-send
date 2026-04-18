@@ -29,8 +29,8 @@ USER app
 WORKDIR /app
 
 RUN set -x \
-    # Build
-    && PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm ci \
+    # Build: devDependencies (rimraf, webpack, …) are skipped if NODE_ENV=production during npm ci
+    && PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true NODE_ENV=development npm ci \
     && npm run build
 
 # Main image
