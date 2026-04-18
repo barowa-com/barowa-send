@@ -236,8 +236,13 @@ const web = {
   ],
   devtool: 'source-map',
   devServer: {
+    // dev.js nicht beim require() von webpack.config laden (sonst z. B. dotenv/.env auch beim Frontend-Test)
     before:
-      process.env.NODE_ENV === 'development' && require('./server/bin/dev'),
+      process.env.NODE_ENV === 'development'
+        ? function(app, server) {
+            return require('./server/bin/dev')(app, server);
+          }
+        : undefined,
     compress: true,
     hot: false,
     host: '0.0.0.0',

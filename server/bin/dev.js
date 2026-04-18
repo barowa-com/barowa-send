@@ -1,8 +1,9 @@
 const path = require('path');
-require('dotenv').config({
-  path: path.join(__dirname, '../../.env'),
-  override: false
-});
+const fs = require('fs');
+const envPath = path.join(__dirname, '../../.env');
+if (fs.existsSync(envPath)) {
+  require('dotenv').config({ path: envPath, override: false });
+}
 
 const assets = require('../../common/assets');
 const routes = require('../routes');
