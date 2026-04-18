@@ -31,7 +31,8 @@ WORKDIR /app
 RUN set -x \
     # Build: devDependencies (rimraf, webpack, …) are skipped if NODE_ENV=production during npm ci
     && PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true NODE_ENV=development npm ci \
-    && npm run build
+    && npm run build \
+    && npm prune --production
 
 # Main image
 FROM node:16.13-alpine3.13
@@ -61,8 +62,8 @@ COPY --chown=app:app common common
 COPY --chown=app:app public/locales public/locales
 COPY --chown=app:app server server
 COPY --chown=app:app --from=builder /app/dist dist
+COPY --chown=app:app --from=builder /app/node_modules node_modules
 
-RUN npm ci --production && npm cache clean --force
 RUN mkdir -p /app/.config/configstore
 RUN ln -s dist/version.json version.json
 
