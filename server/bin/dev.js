@@ -1,3 +1,9 @@
+const path = require('path');
+require('dotenv').config({
+  path: path.join(__dirname, '../../.env'),
+  override: false
+});
+
 const assets = require('../../common/assets');
 const routes = require('../routes');
 const pages = require('../routes/pages');
