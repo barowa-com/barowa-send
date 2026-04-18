@@ -57,16 +57,32 @@ module.exports = function(state, emit) {
   const right =
     archives.length === 0
       ? intro(state)
-      : list(archives, 'p-2 h-full overflow-y-auto w-full', 'mb-4 w-full');
+      : html`
+          <div
+            class="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-default border border-grey-60 bg-grey-10 dark:border-grey-70 dark:bg-grey-90"
+          >
+            ${list(
+              archives,
+              'flex flex-1 min-h-0 w-full flex-col gap-4 overflow-y-auto p-4',
+              'w-full'
+            )}
+          </div>
+        `;
 
   return html`
     <main class="main">
       ${state.modal && modal(state, emit)}
       <section
-        class="h-full w-full p-6 md:p-8 overflow-hidden md:flex md:flex-row md:rounded-xl md:shadow-big"
+        class="h-full w-full p-6 md:p-8 overflow-hidden md:flex md:flex-row md:items-stretch"
       >
-        <div class="px-2 w-full md:px-0 md:mr-8 md:w-1/2">${left}</div>
-        <div class="mt-6 w-full md:w-1/2 md:-m-2">${right}</div>
+        <div
+          class="flex min-h-0 w-full min-w-0 flex-col flex-1 px-2 md:mr-8 md:px-0"
+        >
+          ${left}
+        </div>
+        <div class="mt-6 flex min-h-0 w-full min-w-0 flex-1 flex-col md:mt-0">
+          ${right}
+        </div>
       </section>
     </main>
   `;

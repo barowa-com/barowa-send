@@ -261,14 +261,14 @@ module.exports = function(state, emit, archive) {
   return html`
     <send-archive
       id="archive-${archive.id}"
-      class="flex flex-col items-start rounded-default shadow-light bg-white p-4 w-full dark:bg-grey-90 dark:border-default dark:border-grey-70"
+      class="flex flex-col items-start rounded-default border border-grey-60 bg-white p-4 w-full shadow-light dark:border-grey-60 dark:bg-grey-80"
     >
       ${archiveInfo(
         archive,
         html`
           <input
             type="image"
-            class="self-start flex-shrink-0 text-white hover:opacity-75 focus:outline"
+            class="self-start ml-4 flex-shrink-0 text-white hover:opacity-75 focus:outline"
             alt="${state.translate('deleteButtonHover')}"
             title="${state.translate('deleteButtonHover')}"
             src="${assets.get('close-16.svg')}"
@@ -325,7 +325,7 @@ module.exports = function(state, emit, archive) {
 module.exports.wip = function(state, emit) {
   return html`
     <send-upload-area
-      class="flex flex-col bg-white h-full w-full dark:bg-grey-90"
+      class="flex flex-col bg-white h-full w-full dark:bg-black"
       id="wip"
     >
       ${list(
@@ -335,10 +335,10 @@ module.exports.wip = function(state, emit) {
             fileInfo(f, remove(f, state.translate('deleteButtonHover')))
           ),
         'flex-shrink bg-grey-10 rounded-t overflow-y-auto px-6 py-4 md:h-full md:max-h-half-screen dark:bg-black',
-        'bg-white px-2 my-2 shadow-light rounded-default dark:bg-grey-90 dark:border-default dark:border-grey-80'
+        'bg-white px-2 my-2 rounded-default dark:bg-black'
       )}
       <div
-        class="flex-shrink-0 flex-grow flex items-end p-4 bg-grey-10 rounded-b mb-1 font-medium dark:bg-grey-90"
+        class="flex-shrink-0 flex-grow flex items-end p-4 bg-grey-10 rounded-b mb-1 font-medium dark:bg-black"
       >
         <input
           id="file-upload"
@@ -373,7 +373,7 @@ module.exports.wip = function(state, emit) {
       ${expiryOptions(state, emit)} ${password(state, emit)}
       <button
         id="upload-btn"
-        class="btn rounded-lg flex-shrink-0 focus:outline"
+        class="link-primary mt-2 w-full flex-shrink-0 cursor-pointer rounded-none bg-grey-10 py-4 px-6 font-semibold focus:outline dark:bg-black"
         title="${state.translate('uploadButton')}"
         onclick="${upload}"
       >
@@ -438,7 +438,7 @@ module.exports.uploading = function(state, emit) {
   return html`
     <send-upload-area
       id="${archive.id}"
-      class="flex flex-col items-start rounded-default shadow-light bg-white p-4 w-full dark:bg-grey-90"
+      class="flex flex-col items-start rounded-default border border-grey-60 bg-white p-4 w-full shadow-light dark:border-grey-60 dark:bg-grey-80"
     >
       ${archiveInfo(archive)}
       <div class="text-xs opacity-75 w-full mt-2 mb-2">
@@ -498,7 +498,7 @@ module.exports.empty = function(state, emit) {
 
   return html`
     <send-upload-area
-      class="flex flex-col items-center justify-center border-2 border-dashed border-grey-transparent rounded-default px-6 py-16 h-full w-full dark:border-grey-60"
+      class="flex h-full w-full flex-col items-center justify-center rounded-default border border-grey-60 bg-grey-10 px-6 py-16 dark:border-grey-70 dark:bg-grey-90"
       onclick="${e => {
         if (e.target.tagName !== 'LABEL') {
           document.getElementById('file-upload').click();
@@ -518,18 +518,16 @@ module.exports.empty = function(state, emit) {
       </div>
       <input
         id="file-upload"
-        class="opacity-0 w-0 h-0 appearance-none absolute overflow-hidden"
+        class="absolute h-0 w-0 appearance-none overflow-hidden opacity-0"
         type="file"
         multiple
-        onfocus="${focus}"
-        onblur="${blur}"
         onchange="${add}"
         onclick="${e => e.stopPropagation()}"
       />
       <label
         for="file-upload"
         role="button"
-        class="btn rounded-lg flex items-center mt-4"
+        class="link-primary focus:outline mt-4 flex cursor-pointer items-center rounded-lg border border-grey-60 py-4 px-6 font-semibold dark:border-grey-70"
         title="${state.translate('addFilesButton', {
           size: bytes(state.user.maxSize)
         })}"
@@ -539,14 +537,6 @@ module.exports.empty = function(state, emit) {
       ${upsell} ${uploadNotice}
     </send-upload-area>
   `;
-
-  function focus(event) {
-    event.target.nextElementSibling.classList.add('bg-primary', 'outline');
-  }
-
-  function blur(event) {
-    event.target.nextElementSibling.classList.remove('bg-primary', 'outline');
-  }
 
   function add(event) {
     event.preventDefault();
@@ -603,7 +593,7 @@ module.exports.preview = function(state, emit) {
 
   return html`
     <send-archive
-      class="flex flex-col max-h-full bg-white p-4 w-full md:w-128 dark:bg-grey-90"
+      class="flex flex-col max-h-full border border-grey-60 bg-white p-4 w-full shadow-light md:w-128 dark:border-grey-60 dark:bg-grey-80"
     >
       <div class="border-default rounded-default py-3 px-6 dark:border-grey-70">
         ${archiveInfo(archive)} ${details}
@@ -633,7 +623,7 @@ module.exports.downloading = function(state) {
   const progressPercent = percent(progress);
   return html`
     <send-archive
-      class="flex flex-col bg-white rounded-default shadow-light p-4 w-full max-w-sm md:w-128 dark:bg-grey-90"
+      class="flex flex-col rounded-default border border-grey-60 bg-white p-4 w-full max-w-sm shadow-light md:w-128 dark:border-grey-60 dark:bg-grey-80"
     >
       ${archiveInfo(archive)}
       <div class="link-primary text-sm font-medium mt-2">

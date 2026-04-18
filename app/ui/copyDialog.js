@@ -35,7 +35,7 @@ module.exports = function(name, url) {
           </button>
         </div>
         <button
-          class="btn rounded-lg w-full flex-shrink-0 focus:outline"
+          class="link-primary w-full flex-shrink-0 cursor-pointer rounded-lg py-4 px-6 font-semibold focus:outline"
           onclick="${copy}"
           title="${state.translate('copyLinkButton')}"
         >

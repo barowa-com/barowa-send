@@ -28,28 +28,24 @@ a:focus {
 }
 
 body {
-  background-image: url('../assets/bg.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   overflow-x: hidden;
 }
 
+/* Preflight: `button { background-color: transparent }` — Klasse .btn schlägt das; button.btn für Spezifität */
+button.btn,
 .btn {
-  @apply bg-primary;
-  @apply text-white;
-  @apply cursor-pointer;
-  @apply py-4;
-  @apply px-6;
-  @apply font-semibold;
+  background-color: var(--color-primary, #0a84ff);
+  color: #fff;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
 }
 
-.btn:hover {
-  @apply bg-primary_accent;
-}
-
+button.btn:hover,
+button.btn:focus,
+.btn:hover,
 .btn:focus {
-  @apply bg-primary_accent;
+  background-color: var(--color-primary-accent, #003eaa);
 }
 
 .checkbox {
@@ -288,19 +284,6 @@ select {
     background-image: unset;
   }
 
-  .btn {
-    @apply bg-primary;
-    @apply text-white;
-  }
-
-  .btn:hover {
-    @apply bg-primary_accent;
-  }
-
-  .btn:focus {
-    @apply bg-primary_accent;
-  }
-
   /* Primärfarbe kann z. B. #000 sein (Branding); auf dunklem Grund wäre
      text-primary dann unsichtbar. Helle Linkfarbe wie übriger Dark-Mode-Text. */
   .link-primary {
@@ -316,14 +299,7 @@ select {
   }
 
   .main > section {
-    @apply bg-grey-90;
-  }
-
-  @screen md {
-    .main > section {
-      @apply border-default;
-      @apply border-grey-80;
-    }
+    @apply bg-black;
   }
 }
 
