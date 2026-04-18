@@ -222,6 +222,12 @@ const web = {
         {
           context: 'public',
           from: '*.*'
+        },
+        {
+          context: 'public',
+          from: 'custom_assets',
+          to: 'custom_assets',
+          noErrorOnMissing: true
         }
       ]
     }),
