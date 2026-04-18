@@ -11,7 +11,7 @@
   "license": "MPL-2.0",
   "private": true,
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\"",
     "build": "npm run clean && webpack",
     "lint": "npm-run-all lint:*",
     "lint:css": "stylelint app/*.css app/**/*.css",
